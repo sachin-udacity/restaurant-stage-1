@@ -8,10 +8,28 @@ var markers = []
  * Fetch neighborhoods and cuisines as soon as the page is loaded.
  */
 document.addEventListener('DOMContentLoaded', (event) => {
-  initMap(); // added 
-  fetchNeighborhoods();
-  fetchCuisines();
+    registerServiceWorker();
+    initMap(); // added 
+    fetchNeighborhoods();
+    fetchCuisines();
 });
+
+
+/**
+ * Register service worker.
+ */
+registerServiceWorker = () => {
+    if ('serviceWorker' in navigator) {
+        // register the service worker
+        navigator.serviceWorker.register('/sw.js', {
+            scope: '/'
+        }).then(function (registration) {
+            console.log('SW Registration scope: ', registration.scope);
+        }, function (err) {
+            console.log('SW registration failed: ', err);
+        });
+    }
+}
 
 /**
  * Fetch all neighborhoods and set their HTML.
@@ -161,6 +179,7 @@ createRestaurantHTML = (restaurant) => {
   const image = document.createElement('img');
   image.className = 'restaurant-img';
   image.src = DBHelper.imageUrlForRestaurant(restaurant);
+  image.alt = DBHelper.imageAltTextForRestaurant(restaurant);
   li.append(image);
 
   const name = document.createElement('h1');
