@@ -1,0 +1,120 @@
+@media only screen and (min-width: 320px) and (max-width: 732px) {
+    #restaurant-container, #reviews-container {
+        padding: 9px 0 0 15px;
+        width: calc(100% - 32px);
+    }
+
+    #restaurant-name {
+        font-size: 17pt;
+        margin: 15px 0 14px;
+    }
+
+    #restaurants-list li {
+        max-width: 100%;
+        margin: 0 0 12px;
+        padding: 0 6px 12px;
+    }
+
+    #reviews-list li {
+        background: linear-gradient(to bottom, #000, #000 50px, #fff 50px);
+        margin: 0 0 12px;
+        padding: 0 6px 12px;
+        max-width: 100%;
+    }
+
+    #restaurants-list .restaurant-img {
+        max-width: 100%;
+    }
+
+    #reviews-list li p {
+        margin: 14px 0 0 0;
+    }
+}
+
+@media only screen and (min-width: 731px) and (max-width: 991px) {
+    #breadcrumb li a {
+        font-size: 20pt;
+    }
+
+    #breadcrumb li {
+        font-size: 15pt;
+    }
+
+    #restaurant-hours td {
+        font-size: 16px;
+    }
+
+    #restaurant-address {
+        font-size: 15pt;
+    }
+
+    #restaurants-list {
+        padding: 15px 0 0 0;
+    }
+
+     #restaurants-list li {
+        max-width: 45%;
+        margin: 0 9px 16px 0;
+        padding: 0 6px 12px;
+    }
+
+    #reviews-list li {
+        background: linear-gradient(to bottom, #000, #000 50px, #fff 50px);
+    }
+
+    #reviews-list li p {
+        margin: 14px 0 0 0;
+    }
+}
+
+@media only screen and (min-width: 990px) and (max-width: 1291px) {
+    #restaurants-list li {
+        max-width: 40%;
+    }
+
+    #reviews-list li {
+        background: linear-gradient(to bottom, #000, #000 50px, #fff 50px);
+    }
+
+    #reviews-list li p {
+        margin: 14px 0 0 0;
+    }
+}
+
+@media only screen and (min-width: 1290px) and (max-width: 1920px) {
+    #restaurants-list li {
+        max-width: 25%;
+    }
+
+     #reviews-list li {
+        background: linear-gradient(to bottom, #000, #000 60px, #fff 60px);
+    }
+}
+
+
+/*Testing breakpoint code/*/
+/*
+@media only screen and (min-width: 320px) and (max-width: 732px) {
+    nav {
+        background-color: firebrick;
+    }
+}
+
+@media only screen and (min-width: 731px) and (max-width: 991px) {
+    nav {
+        background-color: firebrick;
+    }
+}
+
+@media only screen and (min-width: 990px) and (max-width: 1291px) {
+    nav {
+        background-color: green;
+    }
+}
+
+@media only screen and (min-width: 1290px) and (max-width: 1920px) {
+    nav {
+        background-color: red;
+    }
+}
+*/

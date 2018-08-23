@@ -8,7 +8,9 @@ var markers = []
  * Fetch neighborhoods and cuisines as soon as the page is loaded.
  */
 document.addEventListener('DOMContentLoaded', (event) => {
-    registerServiceWorker();
+    if (registerServiceWorker) {
+        registerServiceWorker();
+    }
     initMap(); // added 
     fetchNeighborhoods();
     fetchCuisines();
@@ -174,7 +176,11 @@ fillRestaurantsHTML = (restaurants = self.restaurants) => {
  * Create restaurant HTML.
  */
 createRestaurantHTML = (restaurant) => {
+  const headingId = `restaurant-${restaurant.id}`;
   const li = document.createElement('li');
+  li.tabIndex = 0;
+  li.setAttribute('role', 'region');
+  li.setAttribute('aria-labelledby', headingId);
 
   const image = document.createElement('img');
   image.className = 'restaurant-img';
@@ -184,6 +190,7 @@ createRestaurantHTML = (restaurant) => {
 
   const name = document.createElement('h1');
   name.innerHTML = restaurant.name;
+  name.id = headingId;
   li.append(name);
 
   const neighborhood = document.createElement('p');
@@ -197,6 +204,8 @@ createRestaurantHTML = (restaurant) => {
   const more = document.createElement('a');
   more.innerHTML = 'View Details';
   more.href = DBHelper.urlForRestaurant(restaurant);
+  more.setAttribute('role', 'button');
+  more.setAttribute('aria-label', `View Details for ${restaurant.name}`);
   li.append(more)
 
   return li

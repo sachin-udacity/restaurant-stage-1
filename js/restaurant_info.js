@@ -4,7 +4,10 @@ var newMap;
 /**
  * Initialize map as soon as the page is loaded.
  */
-document.addEventListener('DOMContentLoaded', (event) => {  
+document.addEventListener('DOMContentLoaded', (event) => {
+  if (registerServiceWorker) {
+    registerServiceWorker();
+  }
   initMap();
 });
 
@@ -89,6 +92,7 @@ fillRestaurantHTML = (restaurant = self.restaurant) => {
   const image = document.getElementById('restaurant-img');
   image.className = 'restaurant-img'
   image.src = DBHelper.imageUrlForRestaurant(restaurant);
+  image.alt = DBHelper.imageAltTextForRestaurant(restaurant);
 
   const cuisine = document.getElementById('restaurant-cuisine');
   cuisine.innerHTML = restaurant.cuisine_type;
@@ -112,10 +116,21 @@ fillRestaurantHoursHTML = (operatingHours = self.restaurant.operating_hours) => 
     const day = document.createElement('td');
     day.innerHTML = key;
     row.appendChild(day);
-
-    const time = document.createElement('td');
-    time.innerHTML = operatingHours[key];
-    row.appendChild(time);
+    
+    // Display times in two rows for 
+    // restaurant working in two shifts 
+    const timeCell = document.createElement('td');
+    row.appendChild(timeCell);
+    const timeArray = operatingHours[key].split(',');
+    if (timeArray.length === 1) {
+        timeCell.innerHTML = operatingHours[key];
+    } else {
+        timeArray.forEach(function(time) {
+            const timeSegment = document.createElement('div');
+            timeSegment.innerHTML = time;
+            timeCell.appendChild(timeSegment);
+        });
+    }
 
     hours.appendChild(row);
   }
@@ -148,6 +163,10 @@ fillReviewsHTML = (reviews = self.restaurant.reviews) => {
  */
 createReviewHTML = (review) => {
   const li = document.createElement('li');
+  li.tabIndex = 0;
+  li.setAttribute('role', 'region');
+  li.setAttribute('aria-label', `Rated ${review.rating} by ${review.name}`);
+
   const name = document.createElement('p');
   name.innerHTML = review.name;
   name.classList.add('reviewer-name');
