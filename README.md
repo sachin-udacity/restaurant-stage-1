@@ -43,6 +43,7 @@ Here are steps to successfully run the steps
 1. Installation of Python is required to run local server
 
 2. Clone the git repository inside local folder
+
     
     git clone https://github.com/sachin-udacity/restaurant-stage-1.git
 
@@ -50,8 +51,13 @@ Here are steps to successfully run the steps
 
     python -m http.server 8000
 
+
+4. Once server is running, launch the site inside chrome using
+
+
 4. Once server is running, launch the site inside chrome using 
     
+
     http://localhost:8000
 
 
