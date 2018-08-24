@@ -1,17 +1,37 @@
 let restaurants,
   neighborhoods,
-  cuisines
-var newMap
-var markers = []
+  cuisines;
+var newMap;
+var markers = [];
 
 /**
  * Fetch neighborhoods and cuisines as soon as the page is loaded.
  */
 document.addEventListener('DOMContentLoaded', (event) => {
-  initMap(); // added 
-  fetchNeighborhoods();
-  fetchCuisines();
+    if (registerServiceWorker) {
+        registerServiceWorker();
+    }
+    initMap(); // added 
+    fetchNeighborhoods();
+    fetchCuisines();
 });
+
+
+/**
+ * Register service worker.
+ */
+registerServiceWorker = () => {
+    if ('serviceWorker' in navigator) {
+        // register the service worker
+        navigator.serviceWorker.register('/sw.js', {
+            scope: '/'
+        }).then(function (registration) {
+            console.log('SW Registration scope: ', registration.scope);
+        }, function (err) {
+            console.log('SW registration failed: ', err);
+        });
+    }
+}
 
 /**
  * Fetch all neighborhoods and set their HTML.
@@ -156,15 +176,21 @@ fillRestaurantsHTML = (restaurants = self.restaurants) => {
  * Create restaurant HTML.
  */
 createRestaurantHTML = (restaurant) => {
+  const headingId = `restaurant-${restaurant.id}`;
   const li = document.createElement('li');
+  li.tabIndex = 0;
+  li.setAttribute('role', 'region');
+  li.setAttribute('aria-labelledby', headingId);
 
   const image = document.createElement('img');
   image.className = 'restaurant-img';
   image.src = DBHelper.imageUrlForRestaurant(restaurant);
+  image.alt = DBHelper.imageAltTextForRestaurant(restaurant);
   li.append(image);
 
   const name = document.createElement('h1');
   name.innerHTML = restaurant.name;
+  name.id = headingId;
   li.append(name);
 
   const neighborhood = document.createElement('p');
@@ -178,6 +204,8 @@ createRestaurantHTML = (restaurant) => {
   const more = document.createElement('a');
   more.innerHTML = 'View Details';
   more.href = DBHelper.urlForRestaurant(restaurant);
+  more.setAttribute('role', 'button');
+  more.setAttribute('aria-label', `View Details for ${restaurant.name}`);
   li.append(more)
 
   return li
