@@ -29,4 +29,25 @@ This repository uses [leafletjs](https://leafletjs.com/) with [Mapbox](https://w
 Most of the code in this project has been written to the ES6 JavaScript specification for compatibility with modern web browsers and future proofing JavaScript code. As much as possible, try to maintain use of ES6 in any additional JavaScript you write. 
 
 
+## Dependencies
+This application have following dependencies on third party and needed to successfully run.
+1. Mapbox api
+    https://www.mapbox.com/
+2. Leaflet
+    https://leafletjs.com/
+3. Google Normalize Css for better cross-browser consistency
+    //normalize-css.googlecode.com/svn/trunk/normalize.css
+
+# How to run the project?
+Here are steps to successfully run the steps
+1. Installation of Python is required to run local server
+
+2. Clone the git repository inside local folder
+    git clone https://github.com/sachin-udacity/restaurant-stage-1.git
+
+3. Go inside the cloned folder 'restaurant-stage-1' and run local server here using git bash
+
+4. Once server is running, launch the site inside chrome using 
+    http://localhost:8000
+
 
