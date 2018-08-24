@@ -118,14 +118,14 @@ nav h1 a {
 }
 
 
-.skip-link-to-restaurant-review {
+.skip-link-to-restaurant-cuisine {
     position: absolute;
     top: 110px;
     left: -1000px;
     text-decoration: underline;
 }
 
-.skip-link-to-restaurant-review:focus {
+.skip-link-to-restaurant-cuisine:focus {
     left: 40px;
 }
 

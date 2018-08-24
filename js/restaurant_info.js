@@ -95,6 +95,7 @@ fillRestaurantHTML = (restaurant = self.restaurant) => {
   image.alt = DBHelper.imageAltTextForRestaurant(restaurant);
 
   const cuisine = document.getElementById('restaurant-cuisine');
+  cuisine.tabIndex = 0;
   cuisine.innerHTML = restaurant.cuisine_type;
 
   // fill operating hours
