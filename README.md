@@ -46,7 +46,9 @@ Here are steps to successfully run the steps
 
     git clone https://github.com/sachin-udacity/restaurant-stage-1.git
 
-3. Go inside the cloned folder 'restaurant-stage-1' and run local server here using git bash
+3. Go inside the cloned folder 'restaurant-stage-1' and run local server here using git bash.
+
+    python -m http.server 8000
 
 4. Once server is running, launch the site inside chrome using
 
