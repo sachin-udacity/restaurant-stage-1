@@ -88,6 +88,8 @@ fillRestaurantHTML = (restaurant = self.restaurant) => {
 
   const address = document.getElementById('restaurant-address');
   address.innerHTML = restaurant.address;
+  address.tabIndex = 0;
+  address.setAttribute('aria-label', 'Restaurant Address');  
 
   const image = document.getElementById('restaurant-img');
   image.className = 'restaurant-img'
@@ -96,6 +98,7 @@ fillRestaurantHTML = (restaurant = self.restaurant) => {
 
   const cuisine = document.getElementById('restaurant-cuisine');
   cuisine.tabIndex = 0;
+  cuisine.setAttribute('aria-label', `Serves ${restaurant.cuisine_type}`);
   cuisine.innerHTML = restaurant.cuisine_type;
 
   // fill operating hours
@@ -111,6 +114,9 @@ fillRestaurantHTML = (restaurant = self.restaurant) => {
  */
 fillRestaurantHoursHTML = (operatingHours = self.restaurant.operating_hours) => {
   const hours = document.getElementById('restaurant-hours');
+  hours.tabIndex = 0;
+  hours.setAttribute('role', 'region');
+  hours.setAttribute('aria-label', 'Restaurant Hours');
   for (let key in operatingHours) {
     const row = document.createElement('tr');
 
